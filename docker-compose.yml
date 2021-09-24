@@ -1,0 +1,11 @@
+version: '2.4'
+services:
+  agent:
+    image: pedominguezbr/vstsagent:2.192.0
+    environment:
+      - AZP_TOKEN=kj4zx3bmkzxecru6meqyeqofqmw5gohygk7iywzyr5vgp6zy42jq
+      - AZP_AGENT_NAME=pedominguezbr_vstsagent
+      - AZP_URL=https://dev.azure.com/aksdemo1pd
+      - AZP_POOL=pedominguezbr_pool
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
