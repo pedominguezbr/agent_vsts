@@ -7,7 +7,7 @@ RUN apt update && apt upgrade -y
 
 #Install required files
 RUN DEBIAN_FRONTEND="noninteractive"  apt install curl libunwind8 gettext wget nano docker.io docker-compose -y
-RUN apt-get install -y --no-install-recommends ca-certificates curl jq git iputils-ping libcurl4 libicu60 libunwind8 netcat default-jdk
+RUN apt-get install -y --no-install-recommends ca-certificates curl jq git iputils-ping libcurl4 libicu60 libunwind8 netcat default-jdk zip unzip
 
 RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
   && rm -rf /var/lib/apt/lists/*
@@ -71,6 +71,14 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master
   && chmod 700 get_helm.sh \
   && ./get_helm.sh
 #################Fin Instal helm
+
+#################Instal terraform
+RUN wget --quiet https://releases.hashicorp.com/terraform/1.0.7/terraform_1.0.7_linux_amd64.zip \
+  && unzip terraform_1.0.7_linux_amd64.zip \
+  && mv terraform /usr/local/bin/ \
+  && rm terraform_1.0.7_linux_amd64.zip \
+  && terraform --version
+#################Fin terraform
 
 ARG TARGETARCH=amd64
 ARG AGENT_VERSION=2.192.0
