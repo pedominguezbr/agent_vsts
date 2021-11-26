@@ -1,7 +1,7 @@
 version: '2.4'
 services:
   agent:
-    image: pedominguezbr/vstsagent:2.192.0
+    image: pedominguezbr/vstsagent:2.195.0
     environment:
       - AZP_TOKEN=kj4zx3bmkzxecru6meqyeqofqmw5gohygk7iywzyr5vgddy42jq
       - AZP_AGENT_NAME=pedominguezbr_vstsagent
