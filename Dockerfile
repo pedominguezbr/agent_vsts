@@ -7,7 +7,7 @@ RUN apt update && apt upgrade -y
 
 #Install required files
 RUN DEBIAN_FRONTEND="noninteractive"  apt install curl libunwind8 gettext wget nano docker.io docker-compose -y
-RUN apt-get install -y --no-install-recommends ca-certificates curl jq git iputils-ping libcurl4 libicu60 libunwind8 netcat default-jdk zip unzip chromium-browser
+RUN apt-get install -y --no-install-recommends ca-certificates curl jq git iputils-ping libcurl4 libicu60 libunwind8 netcat default-jdk zip unzip chromium-browser xvfb libxi6 libgconf-2-4 fonts-liberation libgtk-3-0 libu2f-udev libvulkan1
 
 RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
   && rm -rf /var/lib/apt/lists/*
@@ -25,6 +25,11 @@ RUN npm --version
 
 
 #################Fin Instal NODE
+
+##Install crhome
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN apt-get install ./google-chrome-stable_current_amd64.deb
+ENV CHROME_BIN=/usr/bin/google-chrome
 
 #################Instal powershell
 RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
