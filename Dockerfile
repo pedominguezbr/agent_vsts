@@ -7,7 +7,7 @@ RUN apt update && apt upgrade -y
 
 #Install required files
 RUN DEBIAN_FRONTEND="noninteractive"  apt install curl libunwind8 gettext wget nano docker.io docker-compose -y
-RUN apt-get install -y --no-install-recommends ca-certificates curl jq git iputils-ping libcurl4 libicu60 libunwind8 netcat default-jdk zip unzip chromium-browser xvfb libxi6 libgconf-2-4 fonts-liberation libgtk-3-0 libu2f-udev libvulkan1
+RUN apt-get install -y --no-install-recommends ca-certificates curl jq git iputils-ping libcurl4 libicu60 libunwind8 netcat default-jdk zip unzip chromium-browser xvfb libxi6 libgconf-2-4 fonts-liberation libgtk-3-0 libu2f-udev libvulkan1 apt-utils
 
 RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
   && rm -rf /var/lib/apt/lists/*
@@ -26,10 +26,15 @@ RUN npm --version
 
 #################Fin Instal NODE
 
-##Install crhome
+##Install chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN apt-get install ./google-chrome-stable_current_amd64.deb
 ENV CHROME_BIN=/usr/bin/google-chrome
+
+##Install git-lfs
+RUN curl -fsSL -o script-git-lfs.sh https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh \
+  && chmod 700 script-git-lfs.sh \
+  && ./script-git-lfs.sh
 
 #################Instal powershell
 RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
@@ -56,7 +61,7 @@ RUN wget --quiet https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.1
 #################Fin terraform
 
 ARG TARGETARCH=amd64
-ARG AGENT_VERSION=2.195.0
+ARG AGENT_VERSION=2.195.1
 
 WORKDIR /azp
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
