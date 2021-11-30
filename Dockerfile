@@ -32,9 +32,8 @@ RUN apt-get install ./google-chrome-stable_current_amd64.deb
 ENV CHROME_BIN=/usr/bin/google-chrome
 
 ##Install git-lfs
-RUN curl -fsSL -o script-git-lfs.sh https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh \
-  && chmod 700 script-git-lfs.sh \
-  && ./script-git-lfs.sh
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
+  && apt-get install git-lfs
 
 #################Instal powershell
 RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
