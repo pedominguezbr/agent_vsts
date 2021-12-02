@@ -10,16 +10,16 @@ TODO: Guide users through getting your code up and running on their own system. 
 
 # Build and Test
 cd .
-docker build -t pedominguezbr/vstsagent:2.192.0 .
-docker push pedominguezbr/vstsagent:2.192.0
+docker build -t pedominguezbr/vstsagent:2.195.1 .
+docker push pedominguezbr/vstsagent:2.195.1
 
 docker-compose ps
 docker-compose up -d
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+#Para agente windows
+docker build -t agentevstwin .
+docker tag agentewin pedominguezbr/vstsagentewin:2.195.1
+docker push pedominguezbr/vstsagentewin:2.195.1
+
